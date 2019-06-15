@@ -24,14 +24,14 @@ void EnemyBoss::UpdateDistance(float dt)
 	{
 		--bulletCountdown;
 		this->ChangeState(JUMPING);
-		delayTime = 1200;
+		delayTime = 1500;
 	}
 	else
 	{
 		delayTime -= dt;
 		if (StateName == JUMPING)
 		{
-			this->vy -= 0.012f;
+			this->vy -= 0.02f;
 		}
 
 		if (this->posX - (this->width >> 1) + dx <= 30)
@@ -42,7 +42,7 @@ void EnemyBoss::UpdateDistance(float dt)
 		else if (this->posX + (this->width >> 1) + dx >= 230)
 		{
 			this->dx = 0;
-			this->posX = 230 - (this->width >> 1);
+			this->posX = 250 - (this->width >> 1);
 		}
 
 		if (this->posY - (this->height >> 1) + dy < this->groundBound.y)

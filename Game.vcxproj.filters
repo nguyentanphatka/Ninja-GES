@@ -52,16 +52,7 @@
     <ClCompile Include="Game.cpp">
       <Filter>Game Components</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyCloakMan.cpp">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyEagle.cpp">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyGunMan.cpp">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="EnemyPanther.cpp">
       <Filter>Game Objects\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Cell.cpp">
@@ -113,6 +104,15 @@
       <Filter>Game Graphics</Filter>
     </ClCompile>
     <ClCompile Include="EnemyBoss.cpp">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyDog.cpp">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBird.cpp">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBanshee.cpp">
       <Filter>Game Objects\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
@@ -177,19 +177,10 @@
     <ClInclude Include="Game.h">
       <Filter>Game Components</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyCloakMan.h">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyEagle.h">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="EnemyFactory.h">
       <Filter>Game Objects\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGunMan.h">
-      <Filter>Game Objects\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyPanther.h">
       <Filter>Game Objects\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Holder.h">
@@ -282,9 +273,6 @@
     <ClInclude Include="BulletFactory.h">
       <Filter>Game Objects\Bullet</Filter>
     </ClInclude>
-    <ClInclude Include="BulletCloakMan.h">
-      <Filter>Game Objects\Bullet</Filter>
-    </ClInclude>
     <ClInclude Include="BulletGunMan.h">
       <Filter>Game Objects\Bullet</Filter>
     </ClInclude>
@@ -328,6 +316,18 @@
       <Filter>Game Objects\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="BulletBoss.h">
+      <Filter>Game Objects\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyDog.h">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBird.h">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBanshee.h">
+      <Filter>Game Objects\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="BulletBanshee.h">
       <Filter>Game Objects\Bullet</Filter>
     </ClInclude>
   </ItemGroup>

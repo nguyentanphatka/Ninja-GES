@@ -1,5 +1,6 @@
 #include "EnemyBazokaMan.h"
 
+
 EnemyBazokaMan::EnemyBazokaMan()
 {
 	animations[STANDING] = new Animation(ENEMY, 3, 3);
@@ -31,7 +32,7 @@ void EnemyBazokaMan::Update(float dt)
 	Enemy::Update(dt);
 	if (this->isDead)
 	{
-		delayTime = ENEMY_CLOAKMAN_DELAY_TIME >> 1;
+		delayTime = ENEMY_BANSHEE_DELAY_TIME >> 1;
 	}
 }
 

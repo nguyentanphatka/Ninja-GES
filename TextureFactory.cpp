@@ -11,9 +11,9 @@ void TextureFactory::LoadResources()
 {
 	auto textures = TextureFactory::GetInstance();
 	textures->AddTexture(PLAYER, "Resources\\player.png");
-	textures->AddTexture(MAP1, "Resources\\tiles1.png");
-	textures->AddTexture(MAP2, "Resources\\tiles2.png");
-	textures->AddTexture(MAP3, "Resources\\tiles3.png");
+	textures->AddTexture(MAP1, "Resources\\tilesmaplv1.png");
+	textures->AddTexture(MAP2, "Resources\\tilesmaplv2.png");
+	textures->AddTexture(MAP3, "Resources\\tilesmaplv3.png");
 	textures->AddTexture(ITEM, "Resources\\item.png");
 	textures->AddTexture(ENEMY, "Resources\\enemy.png");
 }

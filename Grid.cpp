@@ -1,20 +1,12 @@
 ﻿#include "Grid.h"
 #include "GameDefined.h"
 
-void Grid::CreateGridFile(int level)
-{
-	std::ifstream ifile;
-	char gridFileName[30];
-	sprintf_s(gridFileName, "Resources\\grid%d.txt", level);
-}
 
 Grid::Grid(int level)
 {
-	this->CreateGridFile(level);
-
 	std::ifstream ifile;
 	char gridFileName[30];
-	sprintf_s(gridFileName, "Resources\\grid%d.txt", level);
+	sprintf_s(gridFileName, "Resources\\gridMap%d.txt", level);
 
 	int numObjects;
 	ifile.open(gridFileName);
@@ -48,7 +40,7 @@ Grid::Grid(int level)
 				ifile >> value;
 				values.push_back(value);
 			}
-			auto ground = new Rect(values[0], values[1], values[2], values[3]);
+			Rect* ground = new Rect(values[0], values[1], values[2], values[3]);
 
 			ifile >> left >> top >> right >> bottom;
 			for (int r = bottom; r <= top; ++r)
@@ -63,7 +55,7 @@ Grid::Grid(int level)
 			break;
 		}
 
-		case 'w': // wall: x,y,width,height,climable
+		case 'w':
 		{
 			for (int i = 0; i < 5; ++i)
 			{
@@ -85,7 +77,7 @@ Grid::Grid(int level)
 			break;
 		}
 
-		case 'h': // holder: typeID, posX, posY, itemID
+		case 'h':
 		{
 			for (int i = 0; i < 4; ++i)
 			{
@@ -103,30 +95,29 @@ Grid::Grid(int level)
 				for (int c = left; c <= right; ++c)
 				{
 					if (c < 0 || c >= columns) continue;
-					cells[r][c]->objects.insert(holder);
+					
 				}
 			}
 			break;
 		}
 
-		case 'e': // enemy: typeID, posX, posY
+		case 'e':
 		{
 			for (int i = 0; i < 3; ++i)
 			{
 				ifile >> value;
 				values.push_back(value);
 			}
-			auto enemy = EnemyFactory::CreateEnemy(values[0]);
+			Enemy* enemy = EnemyFactory::CreateEnemy(values[0]);
 			enemy->spawnX = enemy->posX = values[1];
 			enemy->spawnY = enemy->posY = values[2];
 
-			// Xác định ground xuất hiện cho các enemy ở đất
 			switch (enemy->type)
 			{
 			case SWORDMAN:
-			case CLOAKMAN:
+			case BANSHEE:
 			case GUNMAN:
-			case PANTHER:
+			case DOG:
 			case RUNMAN:
 			case BAZOKAMAN:
 			case BOSS:
@@ -134,21 +125,20 @@ Grid::Grid(int level)
 				break;
 			}
 
-			// Xác định hướng active cho các Enemy Panther, Eagle, Runman
 			switch (enemy->type)
 			{
-			case PANTHER:
+			case DOG:
 			{
 				ifile >> value;
-				auto panther = (EnemyPanther*)enemy;
-				panther->activeDistance = (value ? ENEMY_PANTHER_ACTIVE_DISTANCE : -ENEMY_PANTHER_ACTIVE_DISTANCE);
+				auto Dog = (EnemyDog*)enemy;
+				Dog->activeDistance = (value ? ENEMY_DOG_ACTIVE_DISTANCE : -ENEMY_DOG_ACTIVE_DISTANCE);
 				break;
 			}
-			case EAGLE:
+			case BIRD:
 			{
 				ifile >> value;
-				auto eagle = (EnemyEagle*)enemy;
-				eagle->activeDistance = (value ? ENEMY_EAGLE_ACTIVE_DISTANCE : -ENEMY_EAGLE_ACTIVE_DISTANCE);
+				auto BIRD = (EnemyBird*)enemy;
+				BIRD->activeDistance = (value ? ENEMY_BIRD_ACTIVE_DISTANCE : -ENEMY_BIRD_ACTIVE_DISTANCE);
 				break;
 			}
 			case RUNMAN:
@@ -237,13 +227,13 @@ void Grid::Update()
 
 void Grid::RespawnEnemies()
 {
-	auto it = respawnObjects.begin();
+	auto  it = respawnObjects.begin();
 	while (it != respawnObjects.end())
 	{
 		auto o = *it;
 		if (o->tag == ENEMY)
 		{
-			auto e = (Enemy*)o;
+			Enemy* e = (Enemy*)o;
 			if (!e->IsRespawnOnScreen())
 			{
 				e->ChangeState(STANDING);
@@ -260,11 +250,11 @@ void Grid::MoveObject(Object * obj, float posX, float posY)
 {
 	if (obj->tag == ENEMY)
 	{
-		auto e = (Enemy*)obj;
+		Enemy* e = (Enemy*)obj;
 		if (e->isOutScreen) return;
 	}
 
-	auto r = obj->GetRect();
+	Rect r = obj->GetRect();
 	int oldLeftCell = r.x / Cell::width;
 	int oldRightCell = (r.x + r.width) / Cell::width;
 	int oldTopCell = r.y / Cell::height;
@@ -386,8 +376,6 @@ void Grid::UpdateVisibleCells()
 	visibleCells.clear();
 	int left = viewPort.x / Cell::width;
 	int right = ceil(viewPort.x / Cell::width) + 2;
-	//int bottom = viewPort.y / Cell::height;
-	//int top = floor(viewPort.y + viewPort.height) / Cell::height);
 
 	for (int r = 0; r < 2; ++r)
 	{

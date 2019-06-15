@@ -11,7 +11,7 @@
 class Player : public Object
 {
 private:
-	std::unordered_map<State, Animation*> animations;		// Danh sách các Animation tương ứng với từng State
+	std::unordered_map<State, Animation*> animations;	
 	static Player* _instance;
 	bool DetectGround(std::unordered_set<Rect*> grounds);
 	bool DetectWall(std::unordered_set<Wall*> walls);
@@ -27,7 +27,7 @@ public:
 	Wall wallBound;
 	PlayerState* state;
 	State stateName;
-	Animation* curAnimation;								// Animation hiện tại
+	Animation* curAnimation;							
 	Type weaponType;
 	std::unordered_map<State, bool> allow;
 

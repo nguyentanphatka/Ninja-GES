@@ -1,6 +1,5 @@
 ﻿#include "Sprite.h"
 
-// Constructor khởi tạo Sprite từ loại Object và tọa độ khung hình chữ nhật bao quanh Sprite
 Sprite::Sprite(Tag tag, int left, int top, int right, int bottom)
 {
 	this->tag = tag;
@@ -11,13 +10,8 @@ Sprite::Sprite(Tag tag, int left, int top, int right, int bottom)
 	_rect.bottom = bottom;
 	_center = D3DXVECTOR3((right - left) >> 1, (bottom - top) >> 1, 0);
 }
-
-// Render Sprite lên màn hình tại tọa độ x,y kèm theo vector tịnh tuyến
-// Update: Có thể cải biên hàm nếu Object đòi hỏi thêm các thuộc tính như xoay, lật...
 void Sprite::Render(float x, float y, float translateX, float translateY)
 {
-	// Các thông số dùng cho hàm vẽ Sprite và biến đổi ma trận (nếu có) để thực hiện phép biến hình
-	// Với tâm phép biến hình và tâm Sprite sẽ lấy tại điểm chính giữa của Sprite
 	auto pPosition = D3DXVECTOR3(x, y, 0);
 	auto pRotationCenter = D3DXVECTOR2(_center.x, _center.y);
 	auto pScalingCenter = D3DXVECTOR2(x, y);

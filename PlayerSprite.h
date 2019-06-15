@@ -1,8 +1,6 @@
 ﻿#pragma once
 #include "Sprite.h"
 
-// Sprite cho Player, dùng thiết đặt lại một số kích thước và vị trí Translate khi Render
-// Cho một số Sprite đặc biệt (khi cắt bằng RECT)
 class PlayerSprite : public Sprite
 {
 public:

@@ -4,7 +4,7 @@ EnemyGunMan::EnemyGunMan()
 {
 	animations[STANDING] = new Animation(ENEMY, 7, 7);
 	animations[RUNNING] = new Animation(ENEMY, 7, 8);
-	animations[ATTACKING] = new Animation(ENEMY, 9, 10, DEFAULT_TPS >> 2);
+	animations[ATTACKING] = new Animation(ENEMY, 9, 10, DEFAULT_FPS >> 2);
 	type = GUNMAN;
 	height = ENEMY_GUNMAN_HEIGHT;
 	width = ENEMY_GUNMAN_WIDTH;
@@ -55,6 +55,6 @@ void EnemyGunMan::Update(float dt)
 	Enemy::Update(dt);
 	if (this->isDead)
 	{
-		delayTime = ENEMY_CLOAKMAN_DELAY_TIME >> 1;
+		delayTime = ENEMY_BANSHEE_DELAY_TIME >> 1;
 	}
 }

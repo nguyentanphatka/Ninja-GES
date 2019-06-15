@@ -17,7 +17,7 @@ public:
 	Animation() {};
 	~Animation();
 	Animation(Tag tag, int index);
-	Animation(Tag tag, int firstIndex, int lastIndex, int timePerFrame = DEFAULT_TPS);			
+	Animation(Tag tag, int firstIndex, int lastIndex, int timePerFrame = DEFAULT_FPS);			
 	void Render(float x, float y, float translateX = 0, float translateY = 0); //render animation at location
 	void Update(float dt);
 

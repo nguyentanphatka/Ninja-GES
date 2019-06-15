@@ -41,7 +41,7 @@ Animation::Animation(Tag tag, int index)
 {
 	_sprites.push_back(SpriteFactory::GetInstance()->GetSprite(tag, index));
 	_totalFrames = 1;
-	_timePerFrame = DEFAULT_TPS;
+	_timePerFrame = DEFAULT_FPS;
 	CurFrameIndex = 0;
 	isLastFrame = false;
 }

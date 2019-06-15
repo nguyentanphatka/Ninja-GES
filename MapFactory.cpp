@@ -1,4 +1,5 @@
 #include "MapFactory.h"
+#include "GameDefined.h"
 
 MapFactory* MapFactory::_instance = NULL;
 

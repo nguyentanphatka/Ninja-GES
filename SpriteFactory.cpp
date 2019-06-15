@@ -53,15 +53,15 @@ void SpriteFactory::LoadResources()
 	sprites->AddSprite(new EnemySprite(GUNMAN, 129, 56, 159, 87));
 	sprites->AddSprite(new EnemySprite(GUNMAN, 159, 56, 189, 87));
 	sprites->AddSprite(new EnemySprite(GUNMAN, 190, 62, 206, 73));
-	sprites->AddSprite(new EnemySprite(CLOAKMAN, 404, 0, 437, 43));
-	sprites->AddSprite(new EnemySprite(CLOAKMAN, 440, 0, 474, 43));
-	sprites->AddSprite(new EnemySprite(CLOAKMAN, 488, 0, 518, 43));
-	sprites->AddSprite(new EnemySprite(PANTHER, 309, 74, 342, 90));
-	sprites->AddSprite(new EnemySprite(PANTHER, 342, 74, 377, 90));
-	sprites->AddSprite(new EnemySprite(EAGLE, 471, 54, 497, 92));
-	sprites->AddSprite(new EnemySprite(EAGLE, 500, 54, 526, 92));
-	sprites->AddSprite(new EnemySprite(EAGLE, 500, 54, 526, 92));
-	sprites->AddSprite(new EnemySprite(EAGLE, 500, 54, 526, 92));
+	sprites->AddSprite(new EnemySprite(BANSHEE, 404, 0, 437, 43));
+	sprites->AddSprite(new EnemySprite(BANSHEE, 440, 0, 474, 43));
+	sprites->AddSprite(new EnemySprite(BANSHEE, 488, 0, 518, 43));
+	sprites->AddSprite(new EnemySprite(DOG, 309, 74, 342, 90));
+	sprites->AddSprite(new EnemySprite(DOG, 342, 74, 377, 90));
+	sprites->AddSprite(new EnemySprite(BIRD, 471, 54, 497, 92));
+	sprites->AddSprite(new EnemySprite(BIRD, 500, 54, 526, 92));
+	sprites->AddSprite(new EnemySprite(BIRD, 500, 54, 526, 92));
+	sprites->AddSprite(new EnemySprite(BIRD, 500, 54, 526, 92));
 	sprites->AddSprite(new EnemySprite(BOSS, 348, 248, 388, 298));
 	sprites->AddSprite(new EnemySprite(BOSS, 394, 242, 434, 292));
 
@@ -83,10 +83,10 @@ void SpriteFactory::LoadResources()
 	sprites->AddSprite(new ItemSprite(REDSHURIKEN, 70, 8, 86, 24));
 
 	// ============================= BULLET SPRITE ===========================
-	sprites->AddSprite(new BulletSprite(CLOAKMAN, 519, 5, 527, 21));
-	sprites->AddSprite(new BulletSprite(CLOAKMAN, 519, 23, 527, 38));
-	sprites->AddSprite(new BulletSprite(CLOAKMAN, 534, 7, 550, 17));
-	sprites->AddSprite(new BulletSprite(CLOAKMAN, 534, 27, 550, 38));
+	sprites->AddSprite(new BulletSprite(BANSHEE, 519, 5, 527, 21));
+	sprites->AddSprite(new BulletSprite(BANSHEE, 519, 23, 527, 38));
+	sprites->AddSprite(new BulletSprite(BANSHEE, 534, 7, 550, 17));
+	sprites->AddSprite(new BulletSprite(BANSHEE, 534, 27, 550, 38));
 	sprites->AddSprite(new BulletSprite(GUNMAN, 192, 63, 203, 71));
 	sprites->AddSprite(new BulletSprite(BAZOKAMAN, 443, 60, 455, 75));
 	sprites->AddSprite(new BulletSprite(BAZOKAMAN, 458, 62, 470, 77));

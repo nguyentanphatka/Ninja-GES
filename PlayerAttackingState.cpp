@@ -1,6 +1,5 @@
 ﻿#include "PlayerAttackingState.h"
 
-// Khởi tạo State ATTACK (StateName tùy vào trạng thái trước đó là đánh hoặc ngồi)
 PlayerAttackingState::PlayerAttackingState()
 {
 	_curState = player->state->StateName;
@@ -9,12 +8,10 @@ PlayerAttackingState::PlayerAttackingState()
 	player->allow[JUMPING] = player->allow[SITTING] = false;
 }
 
-// Update lại tráng thái khi đang ATTACK
 void PlayerAttackingState::Update(float dt)
 {
 	this->HandleKeyboard();
 
-	// Khi đã đánh xong
 	if (player->curAnimation->isLastFrame)
 	{
 		player->allow[ATTACKING] = player->allow[JUMPING] = player->allow[SITTING] = true;
@@ -42,7 +39,6 @@ void PlayerAttackingState::Update(float dt)
 	}
 	else
 	{
-		// Khi chưa đánh xong / bắt đầu đánh
 		player->allow[ATTACKING] = false;
 
 		switch (_curState)
@@ -54,7 +50,6 @@ void PlayerAttackingState::Update(float dt)
 
 		case JUMPING:
 		{
-			// Nếu đã nhảy đến độ cao nhất định -> _curState về trạng thái FALLING
 			player->vy -= GRAVITY_SPEED;
 
 			if ((player->vx == SCREEN_WIDTH - player->width
@@ -75,8 +70,6 @@ void PlayerAttackingState::Update(float dt)
 	}
 }
 
-// Xử lí sự kiện bàn phím khi đang ATTACK
-// Khi đang nhảy / rơi: nếu ngược hướng thì vận tốc theo x chậm hơn (khoảng 1/2)
 void PlayerAttackingState::HandleKeyboard()
 {
 	if (keyCode[DIK_LEFT])

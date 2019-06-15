@@ -1,16 +1,17 @@
-﻿#include "EnemyEagle.h"
+﻿#include "EnemyBird.h"
+#include "GameDefined.h"
 
-EnemyEagle::EnemyEagle()
+EnemyBird::EnemyBird()
 {
-	animations[STANDING] = new Animation(ENEMY, 17, 17, DEFAULT_TPS >> 1);
-	animations[RUNNING] = new Animation(ENEMY, 17, 18, DEFAULT_TPS >> 1);
-	type = EAGLE;
-	height = ENEMY_EAGLE_HEIGHT;
-	width = ENEMY_EAGLE_WIDTH;
-	delayTime = ENEMY_EAGLE_DELAY_TIME >> 1;
+	animations[STANDING] = new Animation(ENEMY, 17, 17, DEFAULT_FPS >> 1);
+	animations[RUNNING] = new Animation(ENEMY, 17, 18, DEFAULT_FPS >> 1);
+	type = BIRD;
+	height = ENEMY_BIRD_HEIGHT;
+	width = ENEMY_BIRD_WIDTH;
+	delayTime = ENEMY_BIRD_DELAY_TIME >> 1;
 }
 
-void EnemyEagle::UpdateDistance(float dt)
+void EnemyBird::UpdateDistance(float dt)
 {
 	this->isReverse = (player->posX < this->posX);
 
@@ -21,28 +22,27 @@ void EnemyEagle::UpdateDistance(float dt)
 
 		if (player->posX < this->posX)
 		{
-			this->dx = min(-ENEMY_EAGLE_MIN_SPEEDX, dx);
+			this->dx = min(-ENEMY_BIRD_MIN_SPEEDX, dx);
 		}
 		else
 		{
-			this->dx = max(ENEMY_EAGLE_MIN_SPEEDX, dx);
+			this->dx = max(ENEMY_BIRD_MIN_SPEEDX, dx);
 		}
 
 		if (player->posY < this->posY)
 		{
-			this->dy = min(-ENEMY_EAGLE_MIN_SPEEDY, dy);
+			this->dy = min(-ENEMY_BIRD_MIN_SPEEDY, dy);
 		}
-		else this->dy = max(ENEMY_EAGLE_MIN_SPEEDY, dy);
+		else this->dy = max(ENEMY_BIRD_MIN_SPEEDY, dy);
 
-		delayTime = ENEMY_EAGLE_DELAY_TIME;
+		delayTime = ENEMY_BIRD_DELAY_TIME;
 	}
 	else
 	{
 		delayTime -= dt;
 	}
 
-	// Đạp phanh khi bay hố =))
-
+	// stop and res
 	if (dx > 0 && this->posX > player->posX)
 	{
 		this->dx -= 0.05f;
@@ -62,17 +62,17 @@ void EnemyEagle::UpdateDistance(float dt)
 	}
 }
 
-void EnemyEagle::Update(float dt)
+void EnemyBird::Update(float dt)
 {
 	Enemy::Update(dt);
 
 	if (this->isDead)
 	{
-		delayTime = ENEMY_EAGLE_DELAY_TIME >> 1;
+		delayTime = ENEMY_BIRD_DELAY_TIME >> 1;
 	}
 }
 
-void EnemyEagle::ChangeState(State StateName)
+void EnemyBird::ChangeState(State StateName)
 {
 	switch (StateName)
 	{

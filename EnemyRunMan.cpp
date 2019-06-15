@@ -57,7 +57,7 @@ void EnemyRunMan::ChangeState(State StateName)
 
 	case RUNNING:
 	{
-		auto distance = player->posX - this->spawnX;
+		float distance = player->posX - this->spawnX;
 
 		if (activeDistance * distance > 0 && distance >= this->activeDistance)
 		{

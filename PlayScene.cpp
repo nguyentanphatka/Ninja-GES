@@ -7,7 +7,7 @@ PlayScene::PlayScene(int level)
 	this->level = level;
 	p = player;
 
-	p->spawnX = p->posX = 50;
+	p->spawnX = p->posX = 1900;
 	p->spawnY = p->posY = 50;
 	p->DetectSpawnY(grid->GetColliableGrounds(p));
 	p->ChangeState(new PlayerStandingState());
@@ -23,10 +23,6 @@ PlayScene::PlayScene(int level)
 
 	case 2:
 		endPoint = 3050;
-		break;
-
-	case 3:
-		endPoint = 300;
 		break;
 	}
 }
@@ -51,7 +47,6 @@ bool PlayScene::PlayerIsOnAirGround()
 	return false;
 }
 
-// Update các thông số các đối tượng trong Scene
 void PlayScene::Update(float dt)
 {
 	this->UpdateScene();
@@ -108,13 +103,13 @@ void PlayScene::UpdateObjects(float dt)
 		{
 		case ENEMY:
 		{
-			auto e = (Enemy*)o;
+			Enemy* e = (Enemy*)o;
 			e->Update(dt);
 			grid->MoveObject(e, e->posX + e->dx, e->posY + e->dy);
 
 			switch (e->type)
 			{
-			case CLOAKMAN:
+			case BANSHEE:
 			case GUNMAN:
 			case BAZOKAMAN:
 			{
@@ -137,9 +132,9 @@ void PlayScene::UpdateObjects(float dt)
 				}
 				break;
 			}
-			case PANTHER:
+			case DOG:
 			{
-				auto p = (EnemyPanther*)e;
+				EnemyDog* p = (EnemyDog*)e;
 				if (!p->isOnGround)
 				{
 					p->vy = -0.12f;
@@ -158,7 +153,7 @@ void PlayScene::UpdateObjects(float dt)
 			}
 			case BOSS:
 			{
-				auto boss = (EnemyBoss*)e;
+				EnemyBoss* boss = (EnemyBoss*)e;
 				if (boss->bulletCountdown == 0)
 				{
 					for (int i = 0; i < 3; ++i)
@@ -179,7 +174,7 @@ void PlayScene::UpdateObjects(float dt)
 
 		case HOLDER:
 		{
-			auto h = (Holder*)o;
+			Holder* h = (Holder*)o;
 			h->Update(dt);
 			break;
 		}
@@ -270,33 +265,33 @@ void PlayScene::RestartScene()
 	p->isThrowing = false;
 	p->allow[THROWING] = true;
 
-	for (auto o : grid->respawnObjects)
+	for (auto object : grid->respawnObjects)
 	{
-		switch (o->tag)
+		switch (object->tag)
 		{
 		case ENEMY:
 		{
-			auto e = (Enemy*)o;
+			Enemy* e = (Enemy*)object;
 			e->ChangeState(STANDING);
 			break;
 		}
 		case HOLDER:
 		{
-			auto h = (Holder*)o;
+			Holder* h = (Holder*)object;
 			h->isDead = false;
 			break;
 		}
 		}
-		grid->MoveObject(o, o->spawnX, o->spawnY);
+		grid->MoveObject(object, object->spawnX, object->spawnY);
 	}
 
-	for (auto o : visibleObjects)
+	for (auto object : visibleObjects)
 	{
-		if (o->tag == ENEMY)
+		if (object->tag == ENEMY)
 		{
-			auto e = (Enemy*)o;
+			Enemy* e = (Enemy*)object;
 			e->ChangeState(STANDING);
-			grid->MoveObject(o, o->spawnX, o->spawnY);
+			grid->MoveObject(object, object->spawnX, object->spawnY);
 		}
 	}
 
@@ -307,7 +302,6 @@ void PlayScene::RestartScene()
 	grid->respawnObjects.clear();
 }
 
-// Tải Scene lên màn hình bằng cách vẽ object có trong trong Scene
 void PlayScene::Render()
 {
 	map->Render();
@@ -320,14 +314,12 @@ void PlayScene::Render()
 	p->Render();
 }
 
-// Xử lí Scene khi nhấn phím
 void PlayScene::OnKeyDown(int key)
 {
 	keyCode[key] = true;
 	p->OnKeyDown(key);
 }
 
-// Xử lí Scene khi thả phím
 void PlayScene::OnKeyUp(int key)
 {
 	keyCode[key] = false;

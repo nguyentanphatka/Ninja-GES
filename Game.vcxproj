@@ -78,6 +78,10 @@
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ExecutablePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(ExecutablePath)</ExecutablePath>
+    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -137,10 +141,10 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="EnemyBazokaMan.cpp" />
     <ClCompile Include="EnemyBoss.cpp" />
-    <ClCompile Include="EnemyCloakMan.cpp" />
-    <ClCompile Include="EnemyEagle.cpp" />
+    <ClCompile Include="EnemyBanshee.cpp" />
+    <ClCompile Include="EnemyBird.cpp" />
     <ClCompile Include="EnemyGunMan.cpp" />
-    <ClCompile Include="EnemyPanther.cpp" />
+    <ClCompile Include="EnemyDog.cpp" />
     <ClCompile Include="EnemyRunMan.cpp" />
     <ClCompile Include="EnemySprite.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -178,18 +182,18 @@
     <ClInclude Include="BulletFactory.h" />
     <ClInclude Include="BulletGunMan.h" />
     <ClInclude Include="BulletSprite.h" />
-    <ClInclude Include="BulletCloakMan.h" />
+    <ClInclude Include="BulletBanshee.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="EnemyBazokaMan.h" />
     <ClInclude Include="EnemyBoss.h" />
-    <ClInclude Include="EnemyCloakMan.h" />
-    <ClInclude Include="EnemyEagle.h" />
+    <ClInclude Include="EnemyBanshee.h" />
+    <ClInclude Include="EnemyBird.h" />
     <ClInclude Include="EnemyFactory.h" />
     <ClInclude Include="EnemyGunMan.h" />
-    <ClInclude Include="EnemyPanther.h" />
+    <ClInclude Include="EnemyDog.h" />
     <ClInclude Include="EnemyRunMan.h" />
     <ClInclude Include="EnemySprite.h" />
     <ClInclude Include="Game.h" />

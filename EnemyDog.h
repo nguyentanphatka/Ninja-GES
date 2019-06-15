@@ -1,7 +1,7 @@
 #pragma once
 #include"Enemy.h"
 
-class EnemyPanther :public Enemy 
+class EnemyDog :public Enemy 
 {
 private:
 	Rect curGroundBound;
@@ -9,8 +9,8 @@ private:
 public:
 	float activeDistance;
 	bool isOnGround;
-	EnemyPanther();
-	~EnemyPanther();
+	EnemyDog();
+	~EnemyDog();
 	void DetectGround(std::unordered_set<Rect*> grounds);
 	void DetectCurGround(std::unordered_set<Rect*> grounds);
 	void UpdateDistance(float dt);

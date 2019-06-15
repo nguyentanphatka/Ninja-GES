@@ -1,14 +1,14 @@
 #pragma once
 #include "Enemy.h"
 
-class EnemyEagle : public Enemy 
+class EnemyBird : public Enemy 
 {
 private:
 	float delayTime;
 
 public:
 	float activeDistance;
-	EnemyEagle();
+	EnemyBird();
 	void UpdateDistance(float dt);
 	void Update(float dt);
 	void ChangeState(State StateName);

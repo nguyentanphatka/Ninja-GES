@@ -11,14 +11,14 @@ public:
 	Object() {}
 	virtual ~Object() {}
 
-	Tag tag;									// Tag định loại Object
+	Tag tag;									
 	Type type;
 	float spawnX, spawnY;
-	float posX, posY;							// Vị trí (đồng thời là tâm của Object đó)
-	float vx, vy;								// Vận tốc
+	float posX, posY;							
+	float vx, vy;								
 	float dx, dy;
-	int width, height;							// Kích thước
-	bool isReverse;								// Kiểm tra lật hình theo chiều ngang
+	int width, height;							
+	bool isReverse;								
 	bool isDead;
 
 	Rect GetRect();

@@ -2,7 +2,7 @@
 
 WeaponRedShuriken::WeaponRedShuriken()
 {
-	animation = new Animation(WEAPON, 11, 12, DEFAULT_TPS >> 1);
+	animation = new Animation(WEAPON, 11, 12, DEFAULT_FPS >> 1);
 	width = WEAPON_BLUESHURIKEN_WIDTH;
 	height = WEAPON_BLUESHURIKEN_HEIGHT;
 	vx = 0.6f;

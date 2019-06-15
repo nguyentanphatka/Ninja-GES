@@ -6,7 +6,7 @@ class WeaponSword : public Weapon
 public:
 	WeaponSword()
 	{
-		animation = new Animation(WEAPON, 3, 4, DEFAULT_TPS >> 1);
+		animation = new Animation(WEAPON, 3, 4, DEFAULT_FPS >> 1);
 		width = WEAPON_SWORD_WIDTH;
 		height = WEAPON_SWORD_HEIGHT;
 		vx = vy = 0;
@@ -23,21 +23,21 @@ public:
 				{
 				case BULLET:
 				{
-					auto b = (Bullet*)obj;
+					Bullet* b = (Bullet*)obj;
 					b->ChangeState(DEAD);
 					break;
 				}
 
 				case ENEMY:
 				{
-					auto e = (Enemy*)obj;
+					Enemy* e = (Enemy*)obj;
 					e->ChangeState(DEAD);
 					break;
 				}
 
 				case HOLDER:
 				{
-					auto h = (Holder*)obj;
+					Holder* h = (Holder*)obj;
 					h->isDead = true;
 					break;
 				}
@@ -52,8 +52,8 @@ public:
 		if (frameIndex != 0 && frameIndex != 1) return;
 
 		auto sprite = animation->GetSprite(frameIndex);
-		auto x = player->posX;
-		auto y = player->posY + 10;
+		float x = player->posX;
+		float y = player->posY + 10;
 		sprite->isReverse = this->isReverse;
 
 		switch (frameIndex)

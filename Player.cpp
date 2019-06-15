@@ -4,34 +4,30 @@ Player* Player::_instance = NULL;
 
 Player::Player()
 {
-	// Tải các Animation cho Player
 	animations[STANDING] = new Animation(PLAYER, 0);
-	animations[RUNNING] = new Animation(PLAYER, 1, 3, DEFAULT_TPS >> 1);
+	animations[RUNNING] = new Animation(PLAYER, 1, 3, DEFAULT_FPS >> 1);
 	animations[SITTING] = new Animation(PLAYER, 4, 4);
-	animations[JUMPING] = new Animation(PLAYER, 5, 8, DEFAULT_TPS >> 2);
-	animations[FALLING] = new Animation(PLAYER, 5, 8, DEFAULT_TPS >> 2);
-	animations[ATTACKING_STAND] = new Animation(PLAYER, 9, 11, DEFAULT_TPS >> 1);
-	animations[ATTACKING_SIT] = new Animation(PLAYER, 12, 14, DEFAULT_TPS >> 1);
+	animations[JUMPING] = new Animation(PLAYER, 5, 8, DEFAULT_FPS >> 2);
+	animations[FALLING] = new Animation(PLAYER, 5, 8, DEFAULT_FPS >> 2);
+	animations[ATTACKING_STAND] = new Animation(PLAYER, 9, 11, DEFAULT_FPS >> 1);
+	animations[ATTACKING_SIT] = new Animation(PLAYER, 12, 14, DEFAULT_FPS >> 1);
 	animations[CLINGING] = new Animation(PLAYER, 15);
-	animations[CLIMBING] = new Animation(PLAYER, 15, 16, DEFAULT_TPS >> 1);
+	animations[CLIMBING] = new Animation(PLAYER, 15, 16, DEFAULT_FPS >> 1);
 	animations[DEAD] = new Animation(PLAYER, 5);
 	animations[INJURED] = new Animation(PLAYER, 5);
-
-	// Allow một số state cho trạng thái khởi đầu (Standing)
-	allow[JUMPING] = true;
-	allow[ATTACKING] = true;
-	allow[MOVING] = true;
-	allow[THROWING] = true;
-
-	// Các thông số Object
 	weaponType = REDSHURIKEN;
 	isOnGround = false;
 	tag = PLAYER;
 	width = PLAYER_WIDTH;
 	height = PLAYER_STANDING_HEIGHT;
+	allow[JUMPING] = true;
+	allow[ATTACKING] = true;
+	allow[MOVING] = true;
+	allow[THROWING] = true;
+
+
 }
 
-// Destructor
 Player::~Player()
 {
 	if (curAnimation) delete curAnimation;
@@ -132,8 +128,6 @@ void Player::Update(float dt, std::unordered_set<Object*> ColliableObjects)
 	}
 }
 
-// Duyệt tìm lại vùng đất va chạm của player khi ra khỏi vùng hiện tại
-// Dùng cách nâng sàn Collision duyệt trước
 bool Player::DetectGround(std::unordered_set<Rect*> grounds)
 {
 	auto rbp = this->GetRect();					//rect broading-phase
@@ -155,8 +149,6 @@ bool Player::DetectGround(std::unordered_set<Rect*> grounds)
 	return false;
 }
 
-// Duyệt tìm tường va chạm
-// Bằng cách dịch tường và duyệt trước
 bool Player::DetectWall(std::unordered_set<Wall*> walls)
 {
 	bool flag = false;
@@ -183,18 +175,15 @@ bool Player::DetectWall(std::unordered_set<Wall*> walls)
 	return flag;
 }
 
-// Xử lí va chạm với mặt đất theo các vùng đất hiển thị
 void Player::CheckGroundCollision(std::unordered_set<Rect*> grounds)
 {
 	if (this->isOnWall) return;
 
-	// Trên không
 	if (this->vy)
 	{
 		this->isOnGround = false;
 	}
 
-	// Tìm được vùng đất va chạm
 	if (DetectGround(grounds))
 	{
 		if (this->vy < 0)
@@ -208,14 +197,12 @@ void Player::CheckGroundCollision(std::unordered_set<Rect*> grounds)
 		}
 	}
 
-	// Nếu không thì đang chạy -> rơi
 	else if (!this->vy)
 	{
 		this->ChangeState(new PlayerFallingState());
 	}
 }
 
-// Kiểm tra va chạm tường
 void Player::CheckWallCollision(std::unordered_set<Wall*> walls)
 {
 	if (this->isOnWall) return;
@@ -256,7 +243,6 @@ void Player::CheckWallCollision(std::unordered_set<Wall*> walls)
 	}
 }
 
-// Render nhân vật (bản chất là Render Animation và vũ khí)
 void Player::Render(float translateX, float translateY)
 {
 	auto posX = this->posX + translateX;
@@ -266,7 +252,6 @@ void Player::Render(float translateX, float translateY)
 	curAnimation->Render(posX, posY);
 }
 
-// Xử lí nhấn phím (chung cho các State)
 void Player::OnKeyDown(int key)
 {
 	if (key == DIK_Z)
@@ -279,8 +264,7 @@ void Player::OnKeyDown(int key)
 
 	switch (key)
 	{
-		// Phím X: tấn công với vũ khí
-	case DIK_X:
+	case DIK_A:
 		if (!keyCode[DIK_UP])
 		{
 			if (allow[ATTACKING])
@@ -301,8 +285,7 @@ void Player::OnKeyDown(int key)
 		}
 		break;
 
-		// Phím C: nhảy
-	case DIK_C:
+	case DIK_SPACE:
 		if (allow[JUMPING])
 		{
 			allow[JUMPING] = false;
@@ -312,14 +295,12 @@ void Player::OnKeyDown(int key)
 	}
 }
 
-// Xử lí sự kiện thả phím (dùng chung cho các State)
 void Player::OnKeyUp(int keyCode)
 {
 	if (this->stateName == INJURED) return;
 
 	switch (keyCode)
 	{
-		// Khi thả phím DOWN: state hiện tại chuyển thành đứng
 	case DIK_DOWN:
 		if (stateName == SITTING)
 			stateName = STANDING;
@@ -327,7 +308,6 @@ void Player::OnKeyUp(int keyCode)
 	}
 }
 
-// Đổi State
 void Player::ChangeState(PlayerState * newState)
 {
 	delete state;

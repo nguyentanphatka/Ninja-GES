@@ -25,13 +25,13 @@ public:
 	bool PlayerIsOnAirGround();
 
 	void Update(float dt);
-	void UpdateScene();						// Update các thông số các đối tượng trong Scene
+	void UpdateScene();						
 	void UpdateVisibleObjects();
 	void UpdateObjects(float dt);
 	void UpdatePlayer(float dt);
 
 	void RestartScene();
-	void Render();									// Tải Scene lên màn hình
-	void OnKeyDown(int key);						// Xử lí Scene khi nhấn phím
-	void OnKeyUp(int key);							// Xử lí Scene khi thả phím
+	void Render();									
+	void OnKeyDown(int key);						
+	void OnKeyUp(int key);							
 };

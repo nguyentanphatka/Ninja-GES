@@ -1,27 +1,28 @@
-#include "EnemyPanther.h"
+#include "EnemyDog.h"
+#include "GameDefined.h"
 
-EnemyPanther::EnemyPanther()
+EnemyDog::EnemyDog()
 {
 	animations[STANDING] = new Animation(ENEMY, 15, 15);
 	animations[RUNNING] = new Animation(ENEMY, 15, 16);
-	type = PANTHER;
-	height = ENEMY_PANTHER_HEIGHT;
-	width = ENEMY_PANTHER_WIDTH;
-	speed = ENEMY_PANTHER_SPEED;
+	type = DOG;
+	height = ENEMY_DOG_HEIGHT;
+	width = ENEMY_DOG_HEIGHT;
+	speed = ENEMY_DOG_HEIGHT;
 }
 
-EnemyPanther::~EnemyPanther()
+EnemyDog::~EnemyDog()
 {
 }
 
-void EnemyPanther::DetectGround(std::unordered_set<Rect*> grounds)
+void EnemyDog::DetectGround(std::unordered_set<Rect*> grounds)
 {
 	Enemy::DetectGround(grounds);
 	curGroundBound = groundBound;
 	isOnGround = true;
 }
 
-void EnemyPanther::DetectCurGround(std::unordered_set<Rect*> grounds)
+void EnemyDog::DetectCurGround(std::unordered_set<Rect*> grounds)
 {
 	Rect nextGround = curGroundBound;
 
@@ -48,7 +49,7 @@ void EnemyPanther::DetectCurGround(std::unordered_set<Rect*> grounds)
 	curGroundBound = nextGround;
 }
 
-void EnemyPanther::UpdateDistance(float dt)
+void EnemyDog::UpdateDistance(float dt)
 {
 	if (this->posY - (this->height >> 1) <= this->curGroundBound.y)
 	{
@@ -63,7 +64,7 @@ void EnemyPanther::UpdateDistance(float dt)
 	this->dy = vy * dt;
 }
 
-void EnemyPanther::ChangeState(State StateName)
+void EnemyDog::ChangeState(State StateName)
 {
 	switch (StateName)
 	{

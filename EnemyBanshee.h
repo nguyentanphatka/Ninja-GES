@@ -1,13 +1,13 @@
 #pragma once
 #include "Enemy.h"
 
-class EnemyCloakMan : public Enemy 
+class EnemyBanshee : public Enemy 
 {
 private:
 	float delayTime;
 
 public:
-	EnemyCloakMan();
+	EnemyBanshee();
 	void UpdateDistance(float dt);
 	void Update(float dt);
 };

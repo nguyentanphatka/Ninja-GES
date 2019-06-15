@@ -1,5 +1,5 @@
 #pragma once
-#include "BulletCloakMan.h"
+#include "BulletBanshee.h"
 #include "BulletGunMan.h"
 #include "BulletBazokaMan.h"
 #include "BulletBoss.h"
@@ -11,7 +11,7 @@ public:
 	{
 		switch (bulletType)
 		{
-		case CLOAKMAN: return new BulletCloakMan();
+		case BANSHEE: return new BulletBanshee();
 		case GUNMAN: return new BulletGunMan();
 		case BAZOKAMAN: return new BulletBazokaMan();
 		case BOSS: return new BulletBoss();

@@ -6,7 +6,7 @@
 class PlayerAttackingState : public PlayerState
 {
 private:
-	State _curState;				// Biến tạm dùng xét State sẽ chuyển đổi sau khi thoát State
+	State _curState;				
 	bool _reverse;
 
 public:
